@@ -7,7 +7,7 @@ export async function searchByName(pokemonName: string) {
     const response = await api.getPokemonByName(pokemonName)
     return response
   } catch (error) {
-    console.error('Error while fetching Pokémon:', error)
+    console.error('Error while fetching Pokemon API:', error)
     throw error
   }
 }

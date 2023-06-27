@@ -1,0 +1,40 @@
+.animateSpin {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.position--center {
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.position--left {
+  left: 8px;
+}
+
+.position--right {
+  right: 8px;
+}
+
+.position--top-left {
+  left: 8px;
+  top: 8px;
+  transform: none;
+}
+
+.position--top-right {
+  right: 8px;
+  top: 8px;
+  transform: none;
+}

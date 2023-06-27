@@ -1,32 +1,29 @@
-import { useState } from 'react'
-import { useAppSelector, useAppDispatch } from '../../app/hooks'
-import { searchAsync, selectSearchResult } from './pokemonsSlice'
-import Button from '../../components/Button'
+import { ChangeEventHandler } from 'react'
+import { useAppDispatch } from '../../app/hooks'
+import { searchAsync } from './pokemonsSlice'
+import debounce from 'lodash/debounce'
+import styles from './Pokemons.module.css'
+
 export function PokemonsSearchBar() {
-  const [searchString, setSearchString] = useState('')
   const dispatch = useAppDispatch()
-  const pokemons = useAppSelector(selectSearchResult)
 
-  console.log('pokemons', pokemons)
+  const InputDebouncedOnchange = () => {
+    const onChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+      dispatch(searchAsync(event.target.value))
+    }
 
-  return (
-    <div>
+    const debouncedOnChange = debounce(onChange, 500)
+
+    return (
       <input
         type="text"
-        value={searchString}
-        placeholder="Search..."
-        onChange={(event) => setSearchString(event.target.value)}
+        placeholder="NAME OR NUMBER"
+        onChange={debouncedOnChange}
+        className={styles.pokedexSearchField}
+        autoComplete="off"
       />
-      <Button
-        variant="primary"
-        rounded
-        onClick={() => {
-          console.log('searchString', searchString)
-          dispatch(searchAsync(searchString))
-        }}
-      >
-        Search
-      </Button>
-    </div>
-  )
+    )
+  }
+
+  return <InputDebouncedOnchange />
 }

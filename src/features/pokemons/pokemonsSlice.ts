@@ -43,10 +43,12 @@ export const pokemonsSlice = createSlice({
       )
       .addCase(searchAsync.rejected, (state) => {
         state.status = 'failed'
+        state.data = null
       })
   },
 })
 
 export const selectSearchResult = (state: RootState) => state.pokemons.data
+export const selectSearchStatus = (state: RootState) => state.pokemons.status
 
 export default pokemonsSlice.reducer
