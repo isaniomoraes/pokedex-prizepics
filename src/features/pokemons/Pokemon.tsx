@@ -3,7 +3,7 @@ import { selectSearchResult, selectSearchStatus } from './pokemonsSlice'
 import styles from './Pokemons.module.css'
 import LoadingSpinner from '../../components/LoadingSpinner'
 
-export default function PokemonsList() {
+export default function Pokemon() {
   const pokemon = useAppSelector(selectSearchResult)
   const searchStatus = useAppSelector(selectSearchStatus)
   const pokemonImage: string | null | undefined =

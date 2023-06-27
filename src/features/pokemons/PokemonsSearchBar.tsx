@@ -12,7 +12,7 @@ export function PokemonsSearchBar() {
       dispatch(searchAsync(event.target.value))
     }
 
-    const debouncedOnChange = debounce(onChange, 500)
+    const debouncedOnChange = debounce(onChange, 700)
 
     return (
       <input

@@ -1,20 +1,31 @@
 .button {
-  border: 1px solid transparent;
-  padding: 4px 8px;
+  border: 2px solid transparent;
+  padding: 8px 24px;
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 700;
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   cursor: pointer;
   transition: border-color 0.25s;
+  box-shadow: -2px 2px 0 1px rgba(70, 70, 70, 1), -3px 3px 0 2px rgba(0, 0, 0, 1);
 }
 
 .button.button--rounded {
   border-radius: 4px;
 }
 
+.button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .button.button--primary {
-  background-color: #0A285F;
-  color: #fff;
+  color: #838383;
+  background-color: #333;
+  border-color: #000;
+}
+
+.button.button--primary:hover {
+  color: #000;
 }
 
 .button.button--secondary {
