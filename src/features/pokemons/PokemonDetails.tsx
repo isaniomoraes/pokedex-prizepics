@@ -21,7 +21,7 @@ export default function Pokemon(props: PokemonDetailsProps) {
     if (pokemon?.id) {
       dispatch(getPokemonEvolutions(pokemon.id))
     }
-  }, [pokemon])
+  }, [pokemon, dispatch])
 
   return (
     <div className={styles.pokemonDetailsContainer}>
@@ -34,7 +34,7 @@ export default function Pokemon(props: PokemonDetailsProps) {
         onClick={() => setIsOpen(!isOpen)}
         disabled={!pokemon?.id}
       >
-        Details
+        {isOpen ? 'Close' : 'Details'}
       </button>
       <section
         className={[

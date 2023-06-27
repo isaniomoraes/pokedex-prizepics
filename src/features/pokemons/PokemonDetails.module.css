@@ -18,6 +18,9 @@
   color: #ccc;
   border: 1px solid #000;
   border-radius: 4px 4px 0 0;
+  height: 24px;
+  width: 64px;
+  box-sizing: border-box;
   font-weight: 400;
   font-size: 11px;
   padding: 4px 8px;
@@ -25,9 +28,17 @@
   transform: rotate(90deg);
 }
 
+.buttonToggle.is-open {
+  right: -104px;
+}
+
 .buttonToggle[disabled] {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.buttonToggle:hover {
+  background-color: #222;
 }
 
 .pokemonDetails {

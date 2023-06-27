@@ -1,4 +1,4 @@
-import { MainClient } from 'pokenode-ts'
+import { MainClient, ChainLink } from 'pokenode-ts'
 
 const api = new MainClient()
 
@@ -25,7 +25,7 @@ export async function getEvolutions(pokemonId: number) {
 
     const evolutions: { name: string; image: string; pokemonId: number }[] = []
 
-    const processEvolution = (chain: any) => {
+    const processEvolution = (chain: ChainLink) => {
       const pokemonId = parseInt(chain.species.url.split('/').reverse()[1])
       const name = chain.species.name
       const image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`
