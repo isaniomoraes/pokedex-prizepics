@@ -1,0 +1,35 @@
+.button {
+  border: 1px solid transparent;
+  padding: 4px 8px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.button.button--rounded {
+  border-radius: 4px;
+}
+
+.button.button--primary {
+  background-color: #2de1fc;
+  color: #fff;
+}
+
+.button.button--secondary {
+  background-color: #2afc98;
+  color: #fff;
+}
+
+.button.button--small {
+  font-size: 0.75em;
+}
+
+.button.button--medium {
+  font-size: 1em;
+}
+
+.button.button--medium {
+  font-size: 1.3em;
+}

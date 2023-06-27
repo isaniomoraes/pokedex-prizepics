@@ -1,0 +1,9 @@
+.pokemonsContainer {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 16px;
+}
+
+.pokemonsFilters {
+  margin: 16px 0;
+}
