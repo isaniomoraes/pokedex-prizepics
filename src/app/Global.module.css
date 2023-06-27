@@ -5,12 +5,18 @@
 }
 
 .pokedexContainer {
-  position: relative;
   margin: 0 auto;
+  position: relative;
+  width: 360px;
+}
+
+.pokedexFront {
+  position: relative;
+  z-index: 3;
   width: 360px;
   padding: 96px 32px 32px 32px;
   background-color: #e54222;
-  border-radius: 24px 8px 8px 24px;
+  border-radius: 24px 8px 0 24px;
   box-shadow: -8px 8px 0 8px rgba(206, 34, 17, 1);
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
