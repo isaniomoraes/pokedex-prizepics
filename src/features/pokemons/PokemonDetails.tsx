@@ -3,11 +3,14 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import {
   selectSearchResult,
   selectSearchStatus,
-  getPokemonEvolutions,
+  selectPokemonSpecies,
   selectPokemonEvolutionChain,
+  getPokemonEvolutions,
+  getPokemonSpecies,
 } from './pokemonsSlice'
 import styles from './PokemonDetails.module.css'
 import SpritesTable from '../../components/SpritesTable'
+import LoadingSpinner from '../../components/LoadingSpinner'
 
 interface PokemonDetailsProps {
   changePokemon: (pokemonName: string) => void
@@ -19,10 +22,12 @@ export default function Pokemon(props: PokemonDetailsProps) {
   const pokemon = useAppSelector(selectSearchResult)
   const searchStatus = useAppSelector(selectSearchStatus)
   const pokemonEvolutionChain = useAppSelector(selectPokemonEvolutionChain)
+  const pokemonSpecies = useAppSelector(selectPokemonSpecies)
 
   useEffect(() => {
     if (pokemon?.id) {
       dispatch(getPokemonEvolutions(pokemon.id))
+      dispatch(getPokemonSpecies(pokemon.id))
     }
   }, [pokemon, dispatch])
 
@@ -46,65 +51,104 @@ export default function Pokemon(props: PokemonDetailsProps) {
         ].join(' ')}
       >
         <div className={styles.pokemonInfo}>
-          <div className={styles.detailsRow}>
-            <div>
-              <label className={styles.attributeLabel}>Height</label>
-              <div className={styles.attributeValue}>{pokemon?.height}</div>
-            </div>
-            <div>
-              <label className={styles.attributeLabel}>Weight</label>
-              <div className={styles.attributeValue}>{pokemon?.weight}</div>
-            </div>
-            <div>
-              <label className={styles.attributeLabel}>Type</label>
-              <div className={styles.attributeValues}>
-                {pokemon?.types?.map((typeItem) => (
-                  <span key={`pokemon-type-${typeItem?.type?.name}`}>
-                    {typeItem?.type?.name}
-                  </span>
-                ))}
+          {searchStatus === 'loading' ? (
+            <LoadingSpinner width="24" height="24" position="center" />
+          ) : (
+            <>
+              <div className={styles.detailsRow}>
+                <div>
+                  <label className={styles.attributeLabel}>Height</label>
+                  <div className={styles.attributeValue}>{pokemon?.height}</div>
+                </div>
+                <div>
+                  <label className={styles.attributeLabel}>Weight</label>
+                  <div className={styles.attributeValue}>{pokemon?.weight}</div>
+                </div>
               </div>
-            </div>
-          </div>
-          <div>
-            <label className={styles.attributeLabel}>Evolutions</label>
-            <ul className={styles.evolutions}>
-              {pokemonEvolutionChain?.map((evolution) => {
-                const pokemonId = evolution?.pokemonId.toString()
-                return (
-                  <li
-                    className={[
-                      styles.evolution,
-                      evolution?.pokemonId === pokemon?.id
-                        ? styles['is-selected']
-                        : '',
-                    ].join(' ')}
-                    key={`evolution-item-${pokemonId}`}
-                  >
-                    <button
-                      onClick={() => props.changePokemon(pokemonId)}
-                      className={styles.evolutionImage}
-                    >
-                      <img
-                        src={evolution?.image}
-                        alt={evolution?.name}
-                        width="80%"
-                        height="auto"
-                      />
-                    </button>
-                    <button
-                      onClick={() => props.changePokemon(pokemonId)}
-                      className={styles.evolutionName}
-                    >
-                      {evolution?.name}
-                    </button>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-          {pokemon?.sprites && (
-            <SpritesTable sprites={pokemon?.sprites} isLoading={searchStatus} />
+              <div className={styles.fullRow}>
+                <label className={styles.attributeLabel}>Species</label>
+                {pokemonSpecies && (
+                  <div className={styles.attributeValue}>
+                    {
+                      pokemonSpecies?.genera.find(
+                        (s) => s.language.name === 'en'
+                      )?.genus
+                    }
+                  </div>
+                )}
+              </div>
+              <div className={styles.fullRow}>
+                <label className={styles.attributeLabel}>Type</label>
+                <div className={styles.attributeValues}>
+                  {pokemon?.types?.map((typeItem) => (
+                    <span key={`pokemon-type-${typeItem?.type?.name}`}>
+                      {typeItem?.type?.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className={styles.fullRow}>
+                <label className={styles.attributeLabel}>Abilities</label>
+                <div className={styles.attributeValues}>
+                  {pokemon?.abilities &&
+                    pokemon?.abilities?.map((abilityItem) => {
+                      return (
+                        <span
+                          key={`pokemon-type-${abilityItem?.ability?.name}`}
+                        >
+                          {abilityItem?.ability?.name?.replace('-', ' ')}
+                          {abilityItem?.is_hidden && (
+                            <small> (hidden ability)</small>
+                          )}
+                        </span>
+                      )
+                    })}
+                </div>
+              </div>
+              <div>
+                <label className={styles.attributeLabel}>Evolutions</label>
+                <ul className={styles.evolutions}>
+                  {pokemonEvolutionChain?.map((evolution) => {
+                    const pokemonId = evolution?.pokemonId.toString()
+                    return (
+                      <li
+                        className={[
+                          styles.evolution,
+                          evolution?.pokemonId === pokemon?.id
+                            ? styles['is-selected']
+                            : '',
+                        ].join(' ')}
+                        key={`evolution-item-${pokemonId}`}
+                      >
+                        <button
+                          onClick={() => props.changePokemon(pokemonId)}
+                          className={styles.evolutionImage}
+                        >
+                          <img
+                            src={evolution?.image}
+                            alt={evolution?.name}
+                            width="80%"
+                            height="auto"
+                          />
+                        </button>
+                        <button
+                          onClick={() => props.changePokemon(pokemonId)}
+                          className={styles.evolutionName}
+                        >
+                          {evolution?.name}
+                        </button>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+              {pokemon?.sprites && (
+                <SpritesTable
+                  sprites={pokemon?.sprites}
+                  isLoading={searchStatus}
+                />
+              )}
+            </>
           )}
         </div>
       </section>

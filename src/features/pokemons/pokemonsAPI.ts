@@ -45,3 +45,13 @@ export async function getEvolutions(pokemonId: number) {
     throw error
   }
 }
+
+export async function getSpecies(pokemonId: number) {
+  try {
+    const response = await api.pokemon.getPokemonSpeciesById(pokemonId)
+    return response
+  } catch (error) {
+    console.error('Error while fetching Pokemon API:', error)
+    throw error
+  }
+}
