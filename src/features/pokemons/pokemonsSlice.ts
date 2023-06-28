@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../../app/store'
 import { searchByName, getSpecies, getEvolutions } from './pokemonsAPI'
 import { Pokemon, PokemonSpecies } from 'pokenode-ts'
-import { useAppDispatch } from '../../app/hooks'
 
 // See Pokemon typings here:
 // https://pokenode-ts.vercel.app/typings/pokemon-typings
@@ -57,6 +56,7 @@ export const pokemonsSlice = createSlice({
       .addCase(searchAsync.pending, (state) => {
         state.status = 'loading'
         state.evolutionChain = []
+        state.species = null
       })
       .addCase(
         searchAsync.fulfilled,
