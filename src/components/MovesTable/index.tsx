@@ -1,4 +1,5 @@
 import styles from './MovesTable.module.css'
+import globalStyles from '../../app/Global.module.css'
 
 import React from 'react'
 import { Move } from 'pokenode-ts'
@@ -8,7 +9,6 @@ interface Props {
 }
 
 const MovesTable: React.FC<Props> = ({ moves }) => {
-  console.log(moves)
   return (
     <>
       <label className={styles.title}>Moves</label>
@@ -40,8 +40,20 @@ const MovesTable: React.FC<Props> = ({ moves }) => {
                   <td>{move?.pp}</td>
                   <td>
                     <div className={styles.flexRow}>
-                      <span className={styles.attributeValue}>{move?.type?.name}</span>
-                      <span className={styles.attributeValue} title="Damage class">
+                      <span
+                        className={[
+                          styles.attributeValue,
+                          globalStyles[
+                            `bg_type_${move?.type?.name?.toLowerCase()}`
+                          ],
+                        ].join(' ')}
+                      >
+                        {move?.type?.name}
+                      </span>
+                      <span
+                        className={styles.attributeValue}
+                        title="Damage class"
+                      >
                         {move?.damage_class?.name}
                       </span>
                     </div>

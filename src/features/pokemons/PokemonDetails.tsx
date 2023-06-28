@@ -11,6 +11,7 @@ import {
   getPokemonMoves,
 } from './pokemonsSlice'
 import styles from './PokemonDetails.module.css'
+import globalStyles from '../../app/global.module.css'
 import SpritesTable from '../../components/SpritesTable'
 import LoadingSpinner from '../../components/LoadingSpinner'
 import MovesTable from '../../components/MovesTable'
@@ -86,7 +87,13 @@ export default function Pokemon(props: PokemonDetailsProps) {
                 <label className={styles.attributeLabel}>Type</label>
                 <div className={styles.attributeValues}>
                   {pokemon?.types?.map((typeItem) => (
-                    <span key={`pokemon-type-${typeItem?.type?.name}`}>
+                    <span
+                      key={`pokemon-type-${typeItem?.type?.name}`}
+                      className={[
+                        globalStyles[`bg_type_${typeItem?.type?.name}`],
+                        globalStyles.bgTypeShadow,
+                      ].join(' ')}
+                    >
                       {typeItem?.type?.name}
                     </span>
                   ))}
@@ -100,6 +107,7 @@ export default function Pokemon(props: PokemonDetailsProps) {
                       return (
                         <span
                           key={`pokemon-type-${abilityItem?.ability?.name}`}
+                          style={{ backgroundColor: '#eee', color: '#333' }}
                         >
                           {abilityItem?.ability?.name?.replace('-', ' ')}
                           {abilityItem?.is_hidden && (
