@@ -1,10 +1,43 @@
-import { MainClient, ChainLink } from 'pokenode-ts'
+import { MainClient, ChainLink, Pokemon } from 'pokenode-ts'
 
 const api = new MainClient()
+
+type PokemonSearchHistory = {
+  name: string
+  id: number
+}
+
+const handleSearchHistory = (Pokemon: PokemonSearchHistory) => {
+  // Save search history to localStorage
+  // @TODO: Refactor this function to use a real database
+  const searchHistory = localStorage.getItem('pokedexSearchHistory') || '[]'
+  const searchHistoryArray = JSON.parse(searchHistory)
+
+  // Check if Pokemon is already in search history
+  const pokemonAlreadyInHistory = searchHistoryArray.find(
+    (pokemon: PokemonSearchHistory) => pokemon.id === Pokemon.id
+  )
+  if (!pokemonAlreadyInHistory) {
+    searchHistoryArray.push(Pokemon)
+    localStorage.setItem(
+      'pokedexSearchHistory',
+      JSON.stringify(searchHistoryArray)
+    )
+  }
+}
 
 export async function searchByName(pokemonName: string) {
   try {
     const response = await api.pokemon.getPokemonByName(pokemonName)
+    try {
+      const pokemon: PokemonSearchHistory = {
+        name: response.name,
+        id: response.id,
+      }
+      handleSearchHistory(pokemon)
+    } catch (error) {
+      console.error('Error while fetching Pokemon API:', error)
+    }
     return response
   } catch (error) {
     console.error('Error while fetching Pokemon API:', error)

@@ -1,9 +1,9 @@
-import { PokemonsSearchBar } from '../features/pokemons/PokemonsSearchBar'
 import { useAppDispatch, useAppSelector } from '../app/hooks'
 import {
   searchAsync,
   selectSearchResult,
 } from '../features/pokemons/pokemonsSlice'
+import { PokemonsSearchBar } from '../features/pokemons/PokemonsSearch'
 import styles from './Home.module.css'
 import globalStyles from '../app/Global.module.css'
 import Pokemon from '../features/pokemons/Pokemon'
