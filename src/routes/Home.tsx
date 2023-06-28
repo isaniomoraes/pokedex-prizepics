@@ -32,6 +32,7 @@ export default function Home() {
         </div>
         <div className={styles.navContainer}>
           <Button
+            id="btn-prev-pokemon"
             variant="primary"
             rounded
             onClick={() => {
@@ -45,6 +46,7 @@ export default function Home() {
             Prev
           </Button>
           <Button
+            id="btn-next-pokemon"
             variant="primary"
             rounded
             disabled={!currentPokemon?.id}

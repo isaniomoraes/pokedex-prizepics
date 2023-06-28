@@ -30,12 +30,12 @@ export default function Pokemon(props: PokemonDetailsProps) {
   const pokemonMoves = useAppSelector(selectPokemonMoves)
 
   useEffect(() => {
-    if (pokemon?.id) {
+    if (pokemon?.id && isOpen) {
       dispatch(getPokemonEvolutions(pokemon.id))
       dispatch(getPokemonSpecies(pokemon.id))
       dispatch(getPokemonMoves(pokemon.moves))
     }
-  }, [pokemon, dispatch])
+  }, [pokemon, dispatch, isOpen])
 
   return (
     <div className={styles.pokemonDetailsContainer}>
@@ -47,6 +47,7 @@ export default function Pokemon(props: PokemonDetailsProps) {
         ].join(' ')}
         onClick={() => setIsOpen(!isOpen)}
         disabled={!pokemon?.id}
+        id="pokemon-details-toggle"
       >
         {isOpen ? 'Close' : 'Details'}
       </button>

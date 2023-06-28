@@ -32,6 +32,7 @@ export function PokemonsSearchBar() {
     return (
       <input
         type="text"
+        id="pokedex-search-field"
         placeholder="NAME OR NUMBER"
         onChange={debouncedOnChange}
         className={styles.pokedexSearchField}
