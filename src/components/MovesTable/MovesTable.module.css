@@ -1,0 +1,57 @@
+.movesTableContainer {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #eee;
+}
+
+.title {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.movesTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 14px;
+}
+
+.movesTable th {
+  text-align: left;
+  padding: 4px 6px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: #374151;
+  background-color: #ccc;
+}
+
+.moveName {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.movesTable td {
+  padding: 4px 6px;
+  color: #000;
+}
+
+.flexRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.attributeValue {
+  display: inline-flex;
+  white-space: nowrap;
+  border-radius: 4px;
+  color: #374151;
+  border: 1px solid #9ca3af;
+  padding: 2px 4px;
+  line-height: 1;
+  text-transform: capitalize;
+}

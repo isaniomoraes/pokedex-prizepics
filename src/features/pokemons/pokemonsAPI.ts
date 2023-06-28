@@ -1,4 +1,4 @@
-import { MainClient, ChainLink } from 'pokenode-ts'
+import { MainClient, ChainLink, PokemonMove, Move } from 'pokenode-ts'
 
 const api = new MainClient()
 
@@ -8,21 +8,26 @@ type PokemonSearchHistory = {
 }
 
 const handleSearchHistory = (Pokemon: PokemonSearchHistory) => {
-  // Save search history to localStorage
-  // @TODO: Refactor this function to use a real database
-  const searchHistory = localStorage.getItem('pokedexSearchHistory') || '[]'
-  const searchHistoryArray = JSON.parse(searchHistory)
+  try {
+    // Save search history to localStorage
+    // @TODO: Refactor this function to use a real database
+    const searchHistory = localStorage.getItem('pokedexSearchHistory') || '[]'
+    const searchHistoryArray = JSON.parse(searchHistory)
 
-  // Check if Pokemon is already in search history
-  const pokemonAlreadyInHistory = searchHistoryArray.find(
-    (pokemon: PokemonSearchHistory) => pokemon.id === Pokemon.id
-  )
-  if (!pokemonAlreadyInHistory) {
-    searchHistoryArray.push(Pokemon)
-    localStorage.setItem(
-      'pokedexSearchHistory',
-      JSON.stringify(searchHistoryArray)
+    // Check if Pokemon is already in search history
+    const pokemonAlreadyInHistory = searchHistoryArray.find(
+      (pokemon: PokemonSearchHistory) => pokemon.id === Pokemon.id
     )
+    if (!pokemonAlreadyInHistory) {
+      searchHistoryArray.push(Pokemon)
+      localStorage.setItem(
+        'pokedexSearchHistory',
+        JSON.stringify(searchHistoryArray)
+      )
+    }
+  } catch (error) {
+    console.error('Error while saving search history:', error)
+    throw error
   }
 }
 
@@ -83,6 +88,20 @@ export async function getSpecies(pokemonId: number) {
   try {
     const response = await api.pokemon.getPokemonSpeciesById(pokemonId)
     return response
+  } catch (error) {
+    console.error('Error while fetching Pokemon API:', error)
+    throw error
+  }
+}
+export async function getMoves(moves: PokemonMove[]) {
+  try {
+    const pokemonMoves: Move[] = await Promise.all(
+      moves.map(async (move) => {
+        const moveData = await api.move.getMoveByName(move.move.name)
+        return moveData
+      })
+    )
+    return pokemonMoves
   } catch (error) {
     console.error('Error while fetching Pokemon API:', error)
     throw error

@@ -5,12 +5,15 @@ import {
   selectSearchStatus,
   selectPokemonSpecies,
   selectPokemonEvolutionChain,
+  selectPokemonMoves,
   getPokemonEvolutions,
   getPokemonSpecies,
+  getPokemonMoves,
 } from './pokemonsSlice'
 import styles from './PokemonDetails.module.css'
 import SpritesTable from '../../components/SpritesTable'
 import LoadingSpinner from '../../components/LoadingSpinner'
+import MovesTable from '../../components/MovesTable'
 
 interface PokemonDetailsProps {
   changePokemon: (pokemonName: string) => void
@@ -23,11 +26,13 @@ export default function Pokemon(props: PokemonDetailsProps) {
   const searchStatus = useAppSelector(selectSearchStatus)
   const pokemonEvolutionChain = useAppSelector(selectPokemonEvolutionChain)
   const pokemonSpecies = useAppSelector(selectPokemonSpecies)
+  const pokemonMoves = useAppSelector(selectPokemonMoves)
 
   useEffect(() => {
     if (pokemon?.id) {
       dispatch(getPokemonEvolutions(pokemon.id))
       dispatch(getPokemonSpecies(pokemon.id))
+      dispatch(getPokemonMoves(pokemon.moves))
     }
   }, [pokemon, dispatch])
 
@@ -148,6 +153,8 @@ export default function Pokemon(props: PokemonDetailsProps) {
                   isLoading={searchStatus}
                 />
               )}
+
+              {pokemonMoves && <MovesTable moves={pokemonMoves} />}
             </>
           )}
         </div>
