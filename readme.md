@@ -10,10 +10,12 @@ yarn dev
 
 ## Improvements / nice-to-have
 
-- [ ] Add more tests
-- [ ] Integrate tests with Github Actions
 - [ ] Improve Types of `src/components/SpritesTable/index.tsx`
+- [ ] Improve pokemon sprites table/components
+- [ ] Add more E2E/unit tests
+- [ ] Integrate tests with Github Actions
 - [ ] Better data formatting for Height and Weight
 - [ ] Display a "Not found" error message
 - [ ] Enable Redux logger (on development env only)
 - [ ] Implement details router (/details/:pokemonName) for better navigation history
+- [ ] Option to clean history search

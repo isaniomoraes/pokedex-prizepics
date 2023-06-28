@@ -1,4 +1,4 @@
-import { MainClient, ChainLink, Pokemon } from 'pokenode-ts'
+import { MainClient, ChainLink } from 'pokenode-ts'
 
 const api = new MainClient()
 
