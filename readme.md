@@ -20,6 +20,11 @@ yarn test:e2e
 yarn test:e2e:headless
 ```
 
+Preview of cypress running on UI mode:
+![Cypress running on PrizePics Pokedex](/screenshots/Screenshot%202023-06-28%20at%2018.51.51.png "Cypress running on PrizePics Pokedex")
+
+
+
 ## Pokemon API wrapper
 
 This project uses [Pokenode-ts](pokenode-ts) package, it is one of the Pokemon API library wrappers recommended at [https://pokeapi.co/docs/v2](https://pokeapi.co/docs/v2).

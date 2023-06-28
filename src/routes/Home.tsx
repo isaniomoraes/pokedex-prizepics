@@ -25,6 +25,15 @@ export default function Home() {
           <span></span>
           <span></span>
           <span></span>
+          <div className={globalStyles.logoContainer}>
+            Pokedex
+            <img
+              src="/pokedex-icon.png"
+              alt="Pokeball"
+              width={24}
+              height={24}
+            />
+          </div>
         </header>
         <Pokemon />
         <div className={styles.pokemonsFilters}>
