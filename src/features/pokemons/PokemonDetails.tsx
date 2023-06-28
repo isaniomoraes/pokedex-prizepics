@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react'
 import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import {
   selectSearchResult,
+  selectSearchStatus,
   getPokemonEvolutions,
   selectPokemonEvolutionChain,
 } from './pokemonsSlice'
 import styles from './PokemonDetails.module.css'
+import SpritesTable from '../../components/SpritesTable'
 
 interface PokemonDetailsProps {
   changePokemon: (pokemonName: string) => void
@@ -15,6 +17,7 @@ export default function Pokemon(props: PokemonDetailsProps) {
   const dispatch = useAppDispatch()
   const [isOpen, setIsOpen] = useState(false)
   const pokemon = useAppSelector(selectSearchResult)
+  const searchStatus = useAppSelector(selectSearchStatus)
   const pokemonEvolutionChain = useAppSelector(selectPokemonEvolutionChain)
 
   useEffect(() => {
@@ -100,6 +103,9 @@ export default function Pokemon(props: PokemonDetailsProps) {
               })}
             </ul>
           </div>
+          {pokemon?.sprites && (
+            <SpritesTable sprites={pokemon?.sprites} isLoading={searchStatus} />
+          )}
         </div>
       </section>
     </div>

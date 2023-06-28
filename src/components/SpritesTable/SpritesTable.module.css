@@ -1,0 +1,44 @@
+.title {
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.spritesTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+.spritesTable th {
+  text-align: left;
+  padding: 2px 4px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.spritesTable tr td:first-child {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.spritesTable td {
+  padding: 2px 4px;
+  color: #000;
+}
+
+.spritesTable td img {
+  max-height: 100px;
+  max-width: 100px;
+}

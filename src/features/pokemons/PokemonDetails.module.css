@@ -126,7 +126,7 @@
   flex-wrap: nowrap;
   overflow-x: auto;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 8px;
   padding: 0;
   margin-left: 0;
   list-style: none;
@@ -145,9 +145,9 @@
   position: absolute;
   z-index: 0;
   top: 40px;
-  left: -8px;
-  width: 10px;
-  height: 2px;
+  left: -32px;
+  width: 50px;
+  height: 3px;
   background-color: #000;
 }
 
@@ -163,6 +163,8 @@
 }
 
 .evolutions .evolutionImage {
+  position: static;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,6 +179,10 @@
   border: 2px solid #000;
 }
 
+.evolutions .evolutionImage:hover {
+  border-color: #555;
+}
+
 .evolutions .evolutionName {
   font-size: 14px;
   font-weight: 500;
@@ -185,4 +191,8 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.evolutions .evolutionName:hover {
+  color: #333;
 }

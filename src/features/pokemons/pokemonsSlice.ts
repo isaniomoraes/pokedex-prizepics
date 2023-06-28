@@ -45,6 +45,7 @@ export const pokemonsSlice = createSlice({
     builder
       .addCase(searchAsync.pending, (state) => {
         state.status = 'loading'
+        state.evolutionChain = []
       })
       .addCase(
         searchAsync.fulfilled,
