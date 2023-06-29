@@ -1,5 +1,14 @@
 import React from 'react'
-import { PokemonSprites, VersionSprites } from 'pokenode-ts'
+import {
+  PokemonSprites,
+  GenerationISprites,
+  GenerationIISprites,
+  GenerationIIISprites,
+  GenerationIVSprites,
+  GenerationVSprites,
+  GenerationVISprites,
+  GenerationVIISprites,
+} from 'pokenode-ts'
 import styles from './SpritesTable.module.css'
 
 interface Props {
@@ -7,28 +16,14 @@ interface Props {
   isLoading: string
 }
 
-interface SpriteMap {
-  [key: string]: string
-}
-
-const spriteMapForGeneration: SpriteMap = {
-  'generation-i': 'red-blue',
-  'generation-ii': 'silver',
-  'generation-iii': 'ruby-sapphire',
-  'generation-iv': 'diamond-pearl',
-  'generation-v': 'black-white',
-  'generation-vi': 'x-y',
-  'generation-vii': 'ultra-sun-ultra-moon',
-}
-
-interface IndexedVersionSprites {
-  [key: string]: VersionSprites
-}
-
 const SpritesTable: React.FC<Props> = ({ sprites, isLoading }) => {
-  const generationsSprites: IndexedVersionSprites | undefined =
-    sprites?.versions
-  const generations = Object.keys(generationsSprites || {}).slice(0, 7)
+  const genI: GenerationISprites = sprites?.versions?.['generation-i']
+  const genII: GenerationIISprites = sprites?.versions?.['generation-ii']
+  const genIII: GenerationIIISprites = sprites?.versions?.['generation-iii']
+  const genIV: GenerationIVSprites = sprites?.versions?.['generation-iv']
+  const genV: GenerationVSprites = sprites?.versions?.['generation-v']
+  const genVI: GenerationVISprites = sprites?.versions?.['generation-vi']
+  const genVII: GenerationVIISprites = sprites?.versions?.['generation-vii']
 
   return (
     <>
@@ -39,49 +34,132 @@ const SpritesTable: React.FC<Props> = ({ sprites, isLoading }) => {
             <tbody>
               <tr>
                 <td>Normal</td>
-                {generations.map((generation) => {
-                  if (generation.toString() === 'generation-vi') return null
-                  const versionSprites = generationsSprites?.[generation]
-                  const spriteKey = spriteMapForGeneration[generation]
-                  const frontDefaultSprite =
-                    versionSprites?.[spriteKey]?.['front_default']
-
-                  return (
-                    <td key={`body-generation-${generation}`}>
-                      {frontDefaultSprite ? (
-                        <img
-                          src={frontDefaultSprite}
-                          alt={`Generation ${generation} normal`}
-                        />
-                      ) : (
-                        '-'
-                      )}
-                    </td>
-                  )
-                })}
+                <td>
+                  {genVII?.['ultra-sun-ultra-moon']?.['front_default'] && (
+                    <img
+                      src={genVII?.['ultra-sun-ultra-moon']?.['front_default']}
+                      alt={`Generation VII Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genVI?.['x-y']?.['front_default'] && (
+                    <img
+                      src={genVI?.['x-y']?.['front_default']}
+                      alt={`Generation VI Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genVI?.['omegaruby-alphasapphire']?.['front_default'] && (
+                    <img
+                      src={
+                        genVI?.['omegaruby-alphasapphire']?.['front_default']
+                      }
+                      alt={`Generation VI Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genV?.['black-white']?.['front_default'] && (
+                    <img
+                      src={genV?.['black-white']?.['front_default']}
+                      alt={`Generation V Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genIV?.['platinum']?.['front_default'] && (
+                    <img
+                      src={genIV?.['platinum']?.['front_default']}
+                      alt={`Generation IV Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genIII?.['emerald']?.['front_default'] && (
+                    <img
+                      src={genIII?.['emerald']?.['front_default']}
+                      alt={`Generation III Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genII?.['crystal']?.['front_transparent'] && (
+                    <img
+                      src={genII?.['crystal']?.['front_transparent']}
+                      alt={`Generation II Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genI?.['red-blue']?.['front_transparent'] && (
+                    <img
+                      src={genI?.['red-blue']?.['front_transparent']}
+                      alt={`Generation I Sprite`}
+                    />
+                  )}
+                </td>
               </tr>
               <tr>
                 <td>Shiny</td>
-                {generations.map((generation) => {
-                  if (generation.toString() === 'generation-vi') return null
-                  const versionSprites = generationsSprites?.[generation]
-                  const spriteKey = spriteMapForGeneration[generation]
-                  const frontDefaultSprite =
-                    versionSprites?.[spriteKey]?.['front_shiny']
-
-                  return (
-                    <td key={`body-generation-${generation}`}>
-                      {frontDefaultSprite ? (
-                        <img
-                          src={frontDefaultSprite}
-                          alt={`Generation ${generation} normal`}
-                        />
-                      ) : (
-                        '-'
-                      )}
-                    </td>
-                  )
-                })}
+                <td>
+                  {genVII?.['ultra-sun-ultra-moon']?.['front_shiny'] && (
+                    <img
+                      src={genVII?.['ultra-sun-ultra-moon']?.['front_shiny']}
+                      alt={`Generation VII Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genVI?.['x-y']?.['front_shiny'] && (
+                    <img
+                      src={genVI?.['x-y']?.['front_shiny']}
+                      alt={`Generation VI Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genVI?.['omegaruby-alphasapphire']?.['front_shiny'] && (
+                    <img
+                      src={genVI?.['omegaruby-alphasapphire']?.['front_shiny']}
+                      alt={`Generation VI Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genV?.['black-white']?.['front_shiny'] && (
+                    <img
+                      src={genV?.['black-white']?.['front_shiny']}
+                      alt={`Generation V Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genIV?.['platinum']?.['front_shiny'] && (
+                    <img
+                      src={genIV?.['platinum']?.['front_shiny']}
+                      alt={`Generation IV Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genIII?.['emerald']?.['front_shiny'] && (
+                    <img
+                      src={genIII?.['emerald']?.['front_shiny']}
+                      alt={`Generation III Sprite`}
+                    />
+                  )}
+                </td>
+                <td>
+                  {genII?.['gold']?.['front_transparent'] && (
+                    <img
+                      src={genII?.['gold']?.['front_transparent']}
+                      alt={`Generation II Sprite`}
+                    />
+                  )}
+                </td>
+                <td></td>
               </tr>
             </tbody>
           </table>

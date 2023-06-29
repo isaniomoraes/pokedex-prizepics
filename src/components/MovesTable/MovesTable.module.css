@@ -35,8 +35,9 @@
 }
 
 .movesTable td {
-  padding: 4px 6px;
+  padding: 4px;
   color: #000;
+  font-size: 12px;
 }
 
 .flexRow {

@@ -16,6 +16,7 @@ You can start by running `npx cypress open` to setup your environment and run th
 More useful commands:
 
 ```bash
+yarn lint
 yarn test:e2e
 yarn test:e2e:headless
 ```
@@ -35,9 +36,8 @@ Same result could be achieved using [axios](https://github.com/axios/axios) and 
 
 ## Improvements / nice-to-have
 
-- [ ] Improve Types of `src/components/SpritesTable/index.tsx`
-- [ ] Improve pokemon sprites table/components
-- [ ] Refactor moves component and display the rest of the moves data
+- [ ] Improve pokemon sprites table/components `src/components/SpritesTable/index.tsx`
+- [ ] Refactor pokemon moves component and display the rest of the moves data
 - [ ] Add more E2E/unit tests
 - [ ] Integrate tests with Github Actions
 - [ ] Better data formatting for Height and Weight
