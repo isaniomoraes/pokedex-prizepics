@@ -8,10 +8,10 @@ yarn install
 yarn dev
 ```
 
-## E2E Testing
+## End to End (E2E) Testing
 
 This project uses [Cypress](https://www.cypress.io/) for E2E testing.
-You can start by running `npx cypress open` to setup your environment and run the tests.
+You can start by running `npx cypress open` to setup your environment and run the E2E tests.
 
 More useful commands:
 
@@ -37,6 +37,7 @@ Same result could be achieved using [axios](https://github.com/axios/axios) and 
 
 - [ ] Improve Types of `src/components/SpritesTable/index.tsx`
 - [ ] Improve pokemon sprites table/components
+- [ ] Refactor moves component and display the rest of the moves data
 - [ ] Add more E2E/unit tests
 - [ ] Integrate tests with Github Actions
 - [ ] Better data formatting for Height and Weight
