@@ -34,6 +34,11 @@ export default function Pokemon() {
           </h1>
         </div>
       )}
+      {searchStatus === 'failed' && (
+        <div className={styles.pokemonNameContainer}>
+          <h1 className={styles.pokemonName}>Pokemon not found</h1>
+        </div>
+      )}
     </section>
   )
 }

@@ -21,10 +21,11 @@ yarn test:e2e
 yarn test:e2e:headless
 ```
 
-Preview of cypress running on UI mode:
-![Cypress running on PrizePics Pokedex](/screenshots/Screenshot%202023-06-28%20at%2018.51.51.png "Cypress running on PrizePics Pokedex")
+#### Preview of cypress running on UI mode:
+![Cypress running on UI mode](/screenshots/screenshot-cypress-ui.png "Cypress running on PrizePics Pokedex")
 
-
+#### Preview of cypress running on headless mode:
+![Cypress running on headless mode](/screenshots/screenshot-cypress-headless.png "Cypress running on PrizePics Pokedex")
 
 ## Pokemon API wrapper
 
@@ -41,7 +42,7 @@ Same result could be achieved using [axios](https://github.com/axios/axios) and 
 - [ ] Add more E2E/unit tests
 - [ ] Integrate tests with Github Actions
 - [ ] Better data formatting for Height and Weight
-- [ ] Display a "Not found" error message
+- [x] Display a "Not found" error message
 - [ ] Enable Redux logger (on development env only)
 - [ ] Implement details router (/details/:pokemonName) for better navigation history
 - [ ] Option to clean history search

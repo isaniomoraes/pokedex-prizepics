@@ -77,6 +77,7 @@ export const pokemonsSlice = createSlice({
         state.status = 'loading'
         state.evolutionChain = []
         state.species = null
+        state.moves = []
       })
       .addCase(
         searchAsync.fulfilled,

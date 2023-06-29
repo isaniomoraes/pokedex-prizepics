@@ -64,4 +64,14 @@ context('Main Features', () => {
       cy.get('button#btn-prev-pokemon').should('be.disabled')
     })
   })
+
+  it('Passing wrong search string', () => {
+    cy.get('input#pokedex-search-field').type('-1')
+    // focusout the input to trigger the search
+    cy.get('input').blur()
+    // Intercept and wait for the api request to finish
+    cy.intercept('GET', '/api/v2/pokemon/*').as('apiRequest')
+    cy.wait('@apiRequest')
+    cy.get('h1').should('contain', 'not found')
+  })
 })
