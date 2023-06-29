@@ -9,13 +9,22 @@ context('Main Features', () => {
     cy.get('input#pokedex-search-field').type('pikachu')
     // focusout the input to trigger the search
     cy.get('input').blur()
-    cy.get('h1').should('contain', 'pikachu')
+
+    // Intercept and wait for the api request to finish
+    cy.intercept('GET', '/api/v2/pokemon/*').as('apiRequest')
+    cy.wait('@apiRequest').then(() => {
+      cy.get('h1').should('contain', 'pikachu')
+    })
   })
 
   it('Search by pokemon number', () => {
     cy.get('input#pokedex-search-field').type('1')
     // focusout the input to trigger the search
     cy.get('input').blur()
+    // Intercept and wait for the api request to finish
+    cy.intercept('GET', '/api/v2/pokemon/*').as('apiRequest')
+    cy.wait('@apiRequest')
+    // Check if the pokemon name is correct and visible on the page
     cy.get('h1').should('contain', 'bulbasaur')
   })
 
@@ -23,8 +32,16 @@ context('Main Features', () => {
     cy.get('input#pokedex-search-field').type('1')
     // focusout the input to trigger the search
     cy.get('input').blur()
+
+    // Intercept and wait for the api request to finish
+    cy.intercept('GET', '/api/v2/pokemon/*').as('apiRequest')
+    cy.wait('@apiRequest')
     cy.get('h1').should('contain', 'bulbasaur')
     cy.get('button#btn-next-pokemon').click()
+    // Intercept and wait for the api request to finish
+    cy.intercept('GET', '/api/v2/pokemon/*').as('apiRequest')
+    cy.wait('@apiRequest')
+    // Check if the pokemon name is correct and visible on the page
     cy.get('h1').should('contain', 'ivysaur')
   })
 
@@ -32,8 +49,14 @@ context('Main Features', () => {
     cy.get('input#pokedex-search-field').type('2')
     // focusout the input to trigger the search
     cy.get('input').blur()
+    // Intercept and wait for the api request to finish
+    cy.intercept('GET', '/api/v2/pokemon/*').as('apiRequest')
+    cy.wait('@apiRequest')
     cy.get('h1').should('contain', 'ivysaur')
     cy.get('button#btn-prev-pokemon').click()
+    // Intercept and wait for the api request to finish
+    cy.intercept('GET', '/api/v2/pokemon/*').as('apiRequest')
+    cy.wait('@apiRequest')
     cy.get('h1').should('contain', 'bulbasaur')
 
     // check if prev button is disabled after reaching the first pokemon

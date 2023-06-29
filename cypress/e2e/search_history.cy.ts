@@ -9,6 +9,10 @@ context('Main Features', () => {
     cy.get('input#pokedex-search-field').type('pikachu')
     // focusout the input to trigger the search
     cy.get('input').blur()
+    // Intercept and wait for the api request to finish
+    cy.intercept('GET', '/api/v2/pokemon/*').as('apiRequest')
+    cy.wait('@apiRequest')
+    // Check if the pokemon name is correct and visible on the page
     cy.get('h1').should('contain', 'pikachu')
     cy.get('button#search-history-toggle').click()
     cy.get('#search-history').should('be.visible')
@@ -23,11 +27,18 @@ context('Main Features', () => {
     cy.get('input#pokedex-search-field').type('4')
     // focusout the input to trigger the search
     cy.get('input').blur()
+    // Intercept and wait for the api request to finish
+    cy.intercept('GET', '/api/v2/pokemon/*').as('apiRequest')
+    cy.wait('@apiRequest')
     cy.get('h1').should('contain', 'charmander')
     // search another pokemon
     cy.get('input#pokedex-search-field').type('6')
     // focusout the input to trigger the search
     cy.get('input').blur()
+    // Intercept and wait for the api request to finish
+    cy.intercept('GET', '/api/v2/pokemon/*').as('apiRequest')
+    cy.wait('@apiRequest')
+    // Check if the pokemon name changed
     cy.get('h1').should('contain', 'charizard')
     cy.get('button#search-history-toggle').click()
     cy.get('#search-history').should('be.visible')
@@ -41,7 +52,9 @@ context('Main Features', () => {
         const pokemonName = text
         // Click on the first element of the search history
         cy.get('#search-history ul li:first-of-type button').click()
-        cy.wait(200)
+        // Intercept and wait for the api request to finish
+        cy.intercept('GET', '/api/v2/pokemon/*').as('apiRequest')
+        cy.wait('@apiRequest')
         // Check if the pokemon name is the same as the one from the first element of the search history
         cy.get('h1').should('contain', pokemonName)
       })
