@@ -46,3 +46,4 @@ Same result could be achieved using [axios](https://github.com/axios/axios) and 
 - [ ] Enable Redux logger (on development env only)
 - [ ] Implement details router (/details/:pokemonName) for better navigation history
 - [ ] Option to clean history search
+- [ ] Migrate search history from localStorage to IndexedDB or a real API
