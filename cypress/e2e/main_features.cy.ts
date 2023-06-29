@@ -36,7 +36,7 @@ context('Main Features', () => {
     cy.get('button#btn-prev-pokemon').click()
     cy.get('h1').should('contain', 'bulbasaur')
 
-    // check if prev button now is disabled
+    // check if prev button is disabled after reaching the first pokemon
     it('Check if prev button is disabled in first pokemon', () => {
       cy.get('button#btn-prev-pokemon').should('be.disabled')
     })
