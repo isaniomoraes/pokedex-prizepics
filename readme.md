@@ -1,4 +1,4 @@
-# Pokedex - PrizePicks
+# Pokedex
 > Quick project made by [@isaniomoraes](https://github.com/isaniomoraes)
 
 ## Project setup
